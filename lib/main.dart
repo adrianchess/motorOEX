@@ -259,6 +259,11 @@ class _OexHomePageState extends State<OexHomePage> {
                               ),
                             ),
                           ),
+                          const SizedBox(height: 10),
+                          const _RepoLink(
+                            label: 'Repositorio de la app (GitHub)',
+                            url: 'https://github.com/adrianchess/motorOEX',
+                          ),
                           const SizedBox(height: 16),
                           const Divider(color: Color(0xFFE7D7B3)),
                           const SizedBox(height: 12),
