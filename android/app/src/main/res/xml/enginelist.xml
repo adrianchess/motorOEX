@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engines>
+    <engine name="Stockfish 18" filename="libstockfish.so" target="arm64-v8a" />
+    <engine name="PlentyChess 7.0.65" filename="libplentychess.so" target="arm64-v8a" />
+</engines>
