@@ -5,9 +5,9 @@ Aplicacion Flutter para Android que publica motores de ajedrez UCI mediante el f
 ## Motores publicados por OEX
 
 - Stockfish 18
-- RubiChess 20240817
+- PlentyChess 7.0.65
 
-Los binarios expuestos por la app viven en android/app/src/main/assets/engines y se sirven a traves de un ContentProvider Android usando la authority definida en el AndroidManifest.
+Los binarios expuestos por la app se empaquetan como librerias nativas Android en `android/app/src/main/jniLibs` y se sirven a traves de un ContentProvider Android usando la authority definida en el AndroidManifest.
 
 ## Licencia
 
@@ -18,7 +18,7 @@ Al redistribuir la app o sus APKs debes acompañar la licencia GPL-3.0 y ofrecer
 ## Revision de compatibilidad
 
 - Stockfish: GitHub declara GPL-3.0 y el proyecto distribuye Copying.txt con la GPL v3.
-- RubiChess: GitHub declara GPL-3.0 en el archivo copying del repositorio.
+- PlentyChess: GitHub declara GPL-3.0 en el repositorio.
 
 Con la composicion actual, GPL-3.0 es una licencia compatible y adecuada para la app contenedora.
 

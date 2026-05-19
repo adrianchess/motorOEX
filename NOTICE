@@ -6,7 +6,7 @@ Distribucion del proyecto:
 
 Motores incluidos y verificacion de licencia:
 - Stockfish 18: GPL-3.0. Fuente: https://github.com/official-stockfish/Stockfish
-- RubiChess 20240817: GPL-3.0. Fuente: https://github.com/Matthies/RubiChess
+- PlentyChess 7.0.65: GPL-3.0. Fuente: https://github.com/Yoshie2000/PlentyChess
 
 Cumplimiento al redistribuir:
 - Si redistribuyes el APK o cualquier binario de esta app, debes entregar u ofrecer el codigo fuente correspondiente de esta app y la informacion necesaria para reproducir la distribucion conforme a GPL-3.0.
