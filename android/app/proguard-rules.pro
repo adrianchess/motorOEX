@@ -1,0 +1,2 @@
+-keep class com.analisismotoresoex.motoresoex.MainActivity { public <init>(); }
+-keep class com.analisismotoresoex.motoresoex.OexEngineProvider { public <init>(); }
