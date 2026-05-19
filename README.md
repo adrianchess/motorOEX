@@ -1,6 +1,6 @@
 # Motores OEX
 
-Aplicacion Flutter para Android que publica motores de ajedrez UCI mediante el formato OEX (Open Exchange), de forma que GUIs compatibles como DroidFish puedan detectarlos e importarlos.
+Aplicacion Flutter para Android que publica motores de ajedrez UCI mediante el formato OEX (Open Exchange), de forma que GUIs compatibles como SimplePGN puedan detectarlos e importarlos.
 
 ## Motores publicados por OEX
 
