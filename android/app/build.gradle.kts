@@ -22,6 +22,7 @@ android {
     packaging {
         jniLibs {
             excludes += "**/libVkLayer_khronos_validation.so"
+            useLegacyPackaging = true
         }
     }
 

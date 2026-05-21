@@ -28,7 +28,7 @@ class OexEngineProvider : ContentProvider() {
         val engine = OexEngineRegistry.findExportedEngine(fileName)
             ?: throw FileNotFoundException("Unknown engine: $fileName")
 
-        val file = File(appContext.applicationInfo.nativeLibraryDir, engine.exportFileName)
+        val file = OexEngineRegistry.getEngineFile(appContext, engine.exportFileName)
         if (!file.exists()) {
             throw FileNotFoundException("Engine binary not found: ${file.absolutePath}")
         }

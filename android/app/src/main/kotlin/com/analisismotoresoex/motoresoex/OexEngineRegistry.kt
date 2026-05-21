@@ -41,11 +41,53 @@ object OexEngineRegistry {
     fun findExportedEngine(fileName: String): OexEngineDefinition? =
         advertisedEngines().firstOrNull { it.matches(fileName) }
 
+    fun getEngineFile(context: Context, engineFileName: String): File {
+        // 1. Check in nativeLibraryDir (standard case, e.g. local APK install with extractNativeLibs=true)
+        val nativeDir = context.applicationInfo.nativeLibraryDir
+        val nativeFile = File(nativeDir, engineFileName)
+        if (nativeFile.exists()) {
+            return nativeFile
+        }
+
+        // 2. Fallback: check in internal filesDir (manually extracted case)
+        val internalFile = File(context.filesDir, engineFileName)
+        if (internalFile.exists()) {
+            return internalFile
+        }
+
+        // 3. Extract manually from APK to filesDir if not present (Google Play AAB case)
+        try {
+            val apkFile = File(context.applicationInfo.sourceDir)
+            java.util.zip.ZipFile(apkFile).use { zip ->
+                val abi = primaryAbi()
+                var entry = zip.getEntry("lib/$abi/$engineFileName")
+                if (entry == null) {
+                    // Fallback to searching any entry matching the filename
+                    entry = zip.entries().asSequence().firstOrNull { it.name.endsWith(engineFileName) }
+                }
+                if (entry != null) {
+                    zip.getInputStream(entry).use { input ->
+                        internalFile.outputStream().use { output ->
+                            input.copyTo(output)
+                        }
+                    }
+                    internalFile.setExecutable(true, false)
+                    return internalFile
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        // If everything fails, return the non-existent native file so normal error handling catches it
+        return nativeFile
+    }
+
     fun status(context: Context): Map<String, Any> {
         val abi = primaryAbi()
         val nativeDir = context.applicationInfo.nativeLibraryDir
         val engineStatus = engines.map { engine ->
-            val engineFile = File(nativeDir, engine.exportFileName)
+            val engineFile = getEngineFile(context, engine.exportFileName)
             mapOf(
                 "name" to engine.displayName,
                 "fileName" to engine.exportFileName,
