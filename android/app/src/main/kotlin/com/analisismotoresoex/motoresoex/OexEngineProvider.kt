@@ -15,7 +15,7 @@ class OexEngineProvider : ContentProvider() {
     }
 
     override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor {
-        if (mode != "r") {
+        if (!mode.contains("r")) {
             throw FileNotFoundException("Only read mode is supported")
         }
 
@@ -28,7 +28,6 @@ class OexEngineProvider : ContentProvider() {
         val engine = OexEngineRegistry.findExportedEngine(fileName)
             ?: throw FileNotFoundException("Unknown engine: $fileName")
 
-        // Serve from nativeLibraryDir (where jniLibs are installed)
         val file = File(appContext.applicationInfo.nativeLibraryDir, engine.exportFileName)
         if (!file.exists()) {
             throw FileNotFoundException("Engine binary not found: ${file.absolutePath}")

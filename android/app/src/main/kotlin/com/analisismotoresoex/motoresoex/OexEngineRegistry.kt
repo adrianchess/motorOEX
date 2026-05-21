@@ -10,7 +10,13 @@ data class OexEngineDefinition(
     val targets: Set<String>,
     val exported: Boolean,
     val note: String? = null,
-)
+) {
+    fun matches(fileName: String): Boolean {
+        val clean = fileName.trim()
+        return clean == exportFileName ||
+            clean == exportFileName.removePrefix("lib").removeSuffix(".so")
+    }
+}
 
 object OexEngineRegistry {
     private val engines = listOf(
@@ -33,7 +39,7 @@ object OexEngineRegistry {
     fun advertisedEngines(): List<OexEngineDefinition> = engines.filter { it.exported }
 
     fun findExportedEngine(fileName: String): OexEngineDefinition? =
-        advertisedEngines().firstOrNull { it.exportFileName == fileName }
+        advertisedEngines().firstOrNull { it.matches(fileName) }
 
     fun status(context: Context): Map<String, Any> {
         val abi = primaryAbi()
