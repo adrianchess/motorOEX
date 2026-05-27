@@ -288,7 +288,7 @@ class _OexHomePageState extends State<OexHomePage> {
                           InkWell(
                             onTap: () async {
                               final url = Uri.parse(
-                                'https://sites.google.com/view/motoresoex/inicio?authuser=1',
+                                'https://sites.google.com/view/motoresoex/inicio',
                               );
                               if (!await launchUrl(
                                 url,
