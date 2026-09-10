@@ -5,7 +5,9 @@ Distribucion del proyecto:
 - El archivo LICENSE contiene el texto completo de la licencia.
 
 Motores incluidos y verificacion de licencia:
-- Stockfish 18: GPL-3.0. Fuente: https://github.com/official-stockfish/Stockfish
+- Stockfish 19: GPL-3.0. Fuente exacta: https://github.com/official-stockfish/Stockfish/tree/sf_19
+	Compilacion sin modificaciones del motor: scripts/build_stockfish_android.sh
+	Red integrada: nn-1a298aa575a0.nnue (https://tests.stockfishchess.org/api/nn/nn-1a298aa575a0.nnue).
 - PlentyChess 7.0.65: GPL-3.0. Fuente: https://github.com/Yoshie2000/PlentyChess
 
 Cumplimiento al redistribuir:

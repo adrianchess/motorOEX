@@ -33,7 +33,7 @@ Para que la App funcione como proveedor OEX, únicamente expongo:
 
 - Una **Activity** con el intent `intent.chess.provider.ENGINE` para que las GUIs de ajedrez compatibles con OEX puedan descubrirla.
 - Un **ContentProvider** de solo lectura que devuelve la lista de motores incluidos (nombre, archivo, arquitecturas soportadas).
-- Los binarios nativos de los motores (por ejemplo, Stockfish 18) ubicados en el directorio nativo de la aplicación.
+- Los binarios nativos de los motores (por ejemplo, Stockfish 19) ubicados en el directorio nativo de la aplicación.
 
 Las GUIs de ajedrez de terceros que utilicen estos motores se ejecutan en su propio proceso y bajo su propia política de privacidad. No controlo ni recibo información sobre el uso que dichas GUIs hagan de los motores.
 

@@ -21,7 +21,7 @@ data class OexEngineDefinition(
 object OexEngineRegistry {
     private val engines = listOf(
         OexEngineDefinition(
-            displayName = "Stockfish 18",
+            displayName = "Stockfish 19",
             exportFileName = "libstockfish.so",
             targets = setOf("arm64-v8a"),
             exported = true,

@@ -1,2 +1,2 @@
-stockfish Stockfish 18
+stockfish Stockfish 19
 plentychess PlentyChess 7.0.65
