@@ -30,6 +30,46 @@ Para generar un APK de depuracion:
 flutter build apk --debug
 ```
 
+### Publicacion Android ofuscada
+
+Version preparada: `1.0.14+15`, con target SDK 36 y min SDK 24.
+Los motores incluidos requieren ARM64; la app conserva los ABI existentes.
+
+```bash
+flutter test
+flutter analyze
+flutter build appbundle --release --obfuscate \
+	--split-debug-info=releases/1.0.14+15/symbols
+```
+
+La compilacion requiere la clave de publicacion configurada en
+`android/key.properties`. Verifica siempre la firma: la configuracion actual
+recurre a la clave debug si falta ese archivo. Nunca subas ese resultado a Play.
+R8 reduce y ofusca el codigo Android; `--obfuscate` ofusca los nombres Dart,
+pero no cifra recursos ni sustituye las obligaciones GPL.
+
+El AAB se genera en `build/app/outputs/bundle/release/app-release.aab`.
+Conserva una copia versionada, los simbolos Dart y
+`build/app/outputs/mapping/release/mapping.txt` fuera de `build/`.
+La carpeta local `releases/` esta excluida de Git; haz una copia de seguridad
+privada y no sobrescribas los simbolos de una version ya distribuida.
+
+Antes de publicar, valida el AAB con bundletool, comprueba su firma, manifiesto,
+alineacion ELF de todas las bibliotecas y los APK derivados con `zipalign -P 16`.
+Prueba tambien arranque, descubrimiento OEX y busqueda UCI en Android ARM64
+con paginas de 16 KB. La extraccion de bibliotecas es necesaria para OEX.
+
+En Play Console debes confirmar que el codigo de version no se ha usado,
+que la firma coincide con la clave de subida, y revisar seguridad de datos,
+URL de privacidad, anuncios, audiencia, clasificacion de contenido y requisitos
+de cuenta/pruebas aplicables. Ejecuta el informe previo al lanzamiento y
+proporciona el codigo fuente correspondiente de la app y ambos motores.
+La validacion local no garantiza aprobacion ni cumplimiento total de politicas.
+
+Referencias oficiales:
+- https://support.google.com/googleplay/android-developer/answer/11926878
+- https://developer.android.com/guide/practices/page-sizes
+
 ### Compilar Stockfish 19 para Android
 
 Requisitos: Android NDK 28.2.13676358, Bash, Make, curl, tar y shasum.
